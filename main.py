@@ -58,8 +58,9 @@ async def root():
 #create new /v1/images:annotate
 @app.post("/v1/images:annotate")
 async def v1_images_annotate(request: Root):
-    
-    return {"response": request.requests[0].features[0].engine}
+    if (request.requests[0].features[0].engine == "llm-typhoon"):
+        response = "Typhoon-OCR-7b"
+    return {"response": response}
 
 
 if __name__ == "__main__":
